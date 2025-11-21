@@ -51,14 +51,14 @@ public class StatementPrinter {
         return plays.get(perf.getPlayID());
     }
 
-    private static int getVolumeCredits(Performance perf, Play play) {
+    private static int getVolumeCredits(Performance performance, Play play) {
         // add volume credits
-        int volumeCredits = Math.max(perf.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
+        int result = Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
         // add extra credit for every five comedy attendees
         if ("comedy".equals(play.getType())) {
-            volumeCredits += perf.getAudience() / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
+            result += performance.getAudience() / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
         }
-        return volumeCredits;
+        return result;
     }
 
     private static int getAmount(Performance perf) {
